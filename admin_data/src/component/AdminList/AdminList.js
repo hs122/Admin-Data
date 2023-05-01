@@ -1,9 +1,46 @@
-import React from 'react'
+import { useState, useEffect } from "react";
 
-const AdminList = () => {
+import { ListAction } from "../UI/Action/ListAction";
+const AdminList = ({ task, onDelete, onChange }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [isActive, setIsActive] = useState(false);
+
+
   return (
-    <div>AdminList</div>
-  )
-}
+    <>
+      <tr>
+        <td>
+          <span>
+            <input
+              type="checkbox"
+              checked={isActive}
+              onChange={(e) => {
+                setIsActive(e.target.checked);
+              }}
+            />
+          </span>
+        </td>
 
-export default AdminList
+        <ListAction
+          onChange={onChange}
+          task={task}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+        />
+        <td>
+          <button
+            disabled={!isActive}
+            onClick={() => {
+              onDelete(task.id);
+              setIsActive(false);
+            }}
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </>
+  );
+};
+export default AdminList;
