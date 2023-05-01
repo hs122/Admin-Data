@@ -1,4 +1,4 @@
-const useFilter = (search, allDetails) => {
+const useFilters = (search, allDetails) => {
     const filteredItem = allDetails.filter((items) => {
       return (
         items?.name?.toLowerCase()?.includes(search.toLowerCase()) ||
@@ -9,4 +9,4 @@ const useFilter = (search, allDetails) => {
     return filteredItem;
   };
 
-  export default useFilter;
+  export default useFilters;
