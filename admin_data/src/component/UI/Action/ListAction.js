@@ -1,8 +1,9 @@
 import { useRef } from "react";
-import AdminList from "../../AdminList/AdminList";
+import { Edit } from "../../../assest/svg/Edit";
 import { ListItems } from "../../AdminList/ListItems";
+import { Delete } from "../../../assest/svg/Delete";
 
-export const ListAction = ({ onChange, task, isEditing, setIsEditing }) => {
+export const ListAction = ({ onChange, task, isEditing, setIsEditing,isActive,setIsActive,onDelete }) => {
   const refName = useRef();
 
   let taskContent;
@@ -15,14 +16,15 @@ export const ListAction = ({ onChange, task, isEditing, setIsEditing }) => {
             onChange={(e) => {
               onChange({
                 ...task,
-
                 name: e.target.value,
               });
             }}
           />
         </td>
         <td>
-          <input ref={refName} onChange={(e) => {}} />
+          <input ref={refName} onChange={(e) => {
+
+          }} />
         </td>
         <td>
           <input ref={refName} onChange={(e) => {}} />
@@ -41,11 +43,24 @@ export const ListAction = ({ onChange, task, isEditing, setIsEditing }) => {
   } else {
     taskContent = (
       <>
-        <ListItems task={task} />
-        <td>
-          <img onClick={() => setIsEditing(true)}  alt="edit" />
-        </td>
+
+      <ListItems task={task} />
+      <td>
+      <button  onClick={() => setIsEditing(true)}>
+<Edit/>
+      </button>
+      <button
+          disabled={!isActive}
+          onClick={() => {
+            onDelete(task.id);
+            setIsActive(false);
+          }}
+        >
+          <Delete/>
+        </button>
+</td>
       </>
+
     );
   }
 

@@ -1,13 +1,12 @@
-export const Search = ({ data, handlerClick }) => {
+export const Search = ({ search, handlerClick}) => {
     return (
-      <>
+      <label>
         <input
           type="text"
           placeholder="Search"
-          value={data}
+          value={search}
           onChange={handlerClick}
-          className="input"
-        />
-      </>
+          />
+      </label>
     );
   };

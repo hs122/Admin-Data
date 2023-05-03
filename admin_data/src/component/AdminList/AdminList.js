@@ -1,46 +1,44 @@
 import { useState, useEffect } from "react";
-
 import { ListAction } from "../UI/Action/ListAction";
-const AdminList = ({ task, onDelete, onChange }) => {
-  const [isEditing, setIsEditing] = useState(false);
 
+const AdminList = ({ task, onDelete, onChange, onCheck, onCheckAll }) => {
+  const [isEditing, setIsEditing] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
+  useEffect(() => {
+    if (onCheck) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+      onCheckAll(false);
+    }
+  }, [onCheck, onCheckAll]);
 
   return (
-    <>
-      <tr>
-        <td>
-          <span>
-            <input
-              type="checkbox"
-              checked={isActive}
-              onChange={(e) => {
-                setIsActive(e.target.checked);
-              }}
-            />
-          </span>
-        </td>
-
-        <ListAction
-          onChange={onChange}
-          task={task}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
+    <tr>
+      <td>
+        <input
+          type="checkbox"
+          checked={isActive}
+          onChange={(e) => {
+            setIsActive(e.target.checked);
+          }}
         />
-        <td>
-          <button
-            disabled={!isActive}
-            onClick={() => {
-              onDelete(task.id);
-              setIsActive(false);
-            }}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </>
+      </td>
+
+      <ListAction
+        onChange={onChange}
+        task={task}
+        isEditing={isEditing}
+        setIsEditing={setIsEditing}
+        isActive={isActive}
+        setIsActive={setIsActive}
+        onDelete={onDelete}
+      />
+
+
+
+    </tr>
   );
 };
 export default AdminList;
