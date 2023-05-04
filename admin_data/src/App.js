@@ -4,7 +4,7 @@ function App() {
   return (
 
    <main>
-   <div class="wrapper">
+   <div className="wrapper">
    <Dashboard/>
    </div>
    </main>

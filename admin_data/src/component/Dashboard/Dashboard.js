@@ -12,7 +12,7 @@ import useFilters from "../../hooks/useFilters";
 const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [isCheck, setIsCheck] = useState(false);
-  const { users, setUsers, allUsers, error, sliceData, setNumber, } = useFetch();
+  const { users, setUsers, allUsers, error, sliceData, setNumber,number } = useFetch();
 
 const filter = useFilters
 

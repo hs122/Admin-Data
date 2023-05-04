@@ -93,9 +93,6 @@ input[type="checkbox"]:focus {
   color: #c8d0d9;
 }
 
-div{
-    overflow:auto;
-}
 
 @media (max-width: 750px) {
     th{
@@ -133,9 +130,6 @@ div{
 .btn-All{
     margin-inline:2.5rem;
 }
-ul li.paginations {
-    padding:0 0.5rem;
-}
 
 }
 .btn-All {
@@ -159,32 +153,30 @@ ul li.paginations {
     display:flex;
     margin-top:2rem;
   }
-  ul{
-    position:relative;
-    display:flex;
-    border-radius:50px;
-    bottom:25%;
-  }
-  ul li {
-    list-style:none;
-    line-height:40px;
-
-  }
+.pagination-container{
+  margin-inline:3rem;
+}
+ul{
+  display:flex;
+  margin:0;
+  padding:0;
+}
 ul li{
-    width:100px;
-    text-align:center;
+list-style:none;
+padding:0 1rem;
 }
-ul li a {
-    display:block;
-     text-decoration:none;
+ul li span{
+  display:block;
+  width:40px;
+  height:40px;
+  font-size:1.2rem;
+  text-align:center;
+  background:#353535;
+  color:#fff;
+  text-decoration:none;
+  margin:5px;
+  border-radius:4px;
 }
-.paginations{
-    shape-outside: circle();
-    clip-path: circle();
-    background:white;
-    color:black;
-}
-ul li.paginations:hover a{
-    background:#333;
-    color:white;
+li span {
+padding-top:0.8rem;
 }

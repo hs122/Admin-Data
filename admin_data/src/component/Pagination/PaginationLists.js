@@ -4,11 +4,11 @@ export const PaginationLists = ({ pageCount, handlerPage }) => {
       <>
         {[...Array(pageCount)].map((_, i) => {
           return (
-            <li>
-            <a onClick={() => handlerPage(i + 1)}
-            key={i}>
+            <li key={i}>
+            <span onClick={() => handlerPage(i + 1)}
+            >
               {i + 1}
-            </a>
+            </span>
             </li>
           );
         })}

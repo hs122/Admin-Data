@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { PaginationLists } from "./PaginationLists";
+import { RightArrow } from "../../assest/svg/RightArrow";
+import { DoubleRightArrow } from "../../assest/svg/DoubleRightArrow";
+import { LeftArrow } from "../../assest/svg/LeftArrow";
+import { DoubleLeftArrow } from "../../assest/svg/DoubleLeftArrow";
 
 const Pagination = (props) => {
   const { users } = useFetch();
   const [currentPages, setCurrentPages] = useState(1);
   const totalPerPage = 10;
   const handlerPage = (selectedPage) => {
+    console.log(selectedPage);
     if (selectedPage >= 1 && selectedPage !== currentPages) {
       setCurrentPages(selectedPage);
     } else {
@@ -24,30 +29,38 @@ const Pagination = (props) => {
       }
       return false;
     }).length / totalPerPage
-  )
+  );
   useEffect(() => {
     props.pageNumber(currentPages);
-  }, [currentPages]);
+  }, [props, currentPages]);
   return (
     <div className="pagination">
-      <button class="btn-All text">Delete All</button>
-      <div>
+      <button className="btn-All text">Delete All</button>
+      <div className="pagination-container">
         <ul>
-          <li class="paginations">
-            <span>prev</span>
+          <li>
+            <span onClick={() => handlerPage(1)}>
+              <DoubleLeftArrow />
+            </span>
           </li>
-          <li class="paginations">
-          <span>prev</span>
+          <li>
+            <span onClick={() => handlerPage(currentPages - 1)}>
+              <LeftArrow />
+            </span>
           </li>
 
           {users.length > 0 && (
-            <PaginationLists  handlerPage={handlerPage} />
+            <PaginationLists handlerPage={handlerPage} pageCount={pageCount} />
           )}
-          <li class="paginations">
-            <a>next</a>
+          <li>
+            <span onClick={() => handlerPage(currentPages + 1)}>
+              <RightArrow />
+            </span>
           </li>
-          <li class="paginations">
-            <a>next</a>
+          <li>
+            <span onClick={() => handlerPage(pageCount)}>
+              <DoubleRightArrow />
+            </span>
           </li>
         </ul>
       </div>
