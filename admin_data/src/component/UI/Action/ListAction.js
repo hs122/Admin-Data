@@ -5,6 +5,8 @@ import { Delete } from "../../../assest/svg/Delete";
 
 export const ListAction = ({ onChange, task, isEditing, setIsEditing,isActive,setIsActive,onDelete }) => {
   const refName = useRef();
+  const refEmail = useRef();
+  const refRole = useRef()
 
   let taskContent;
   if (isEditing) {
@@ -22,12 +24,20 @@ export const ListAction = ({ onChange, task, isEditing, setIsEditing,isActive,se
           />
         </td>
         <td>
-          <input ref={refName} onChange={(e) => {
-
-          }} />
+          <input ref={refEmail} onChange={(e) => {
+              onChange({
+                ...task,
+                email: e.target.value,
+              });
+            }} />
         </td>
         <td>
-          <input ref={refName} onChange={(e) => {}} />
+          <input ref={refName} onChange={(e) => {
+              onChange({
+                ...task,
+                role: e.target.value,
+              });
+            }} />
         </td>
         <td>
           <button
