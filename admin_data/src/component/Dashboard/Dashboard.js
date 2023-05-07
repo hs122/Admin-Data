@@ -12,7 +12,7 @@ import useFilters from "../../hooks/useFilters";
 const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [isCheck, setIsCheck] = useState(false);
-  const { users, setUsers, allUsers, error, sliceData, setNumber,number } = useFetch();
+  const { users, setUsers, allUsers, error, sliceData, setNumber} = useFetch();
 
 const filter = useFilters
 
@@ -45,9 +45,9 @@ const filter = useFilters
     setIsCheck(check);
   };
 
-  // const handleDeleteAll = (deletes) => {
-  //  setUsers(users.splice(deletes));
-  // };
+  const handleDeleteAll = (deleteAll) => {
+   setUsers(users.splice(deleteAll));
+  };
   if (users.length === 0) {
     <p>Loading....</p>;
   }

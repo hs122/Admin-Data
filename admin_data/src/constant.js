@@ -1,0 +1,1 @@
+export const ADMIN_FETCH_API =  "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json";

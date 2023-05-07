@@ -10,8 +10,9 @@ const Pagination = (props) => {
   const { users } = useFetch();
   const [currentPages, setCurrentPages] = useState(1);
   const totalPerPage = 10;
+
   const handlerPage = (selectedPage) => {
-    console.log(selectedPage);
+
     if (selectedPage >= 1 && selectedPage !== currentPages) {
       setCurrentPages(selectedPage);
     } else {
