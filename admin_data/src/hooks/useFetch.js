@@ -10,12 +10,13 @@ export const useFetch = () => {
 
   const sliceData = users.slice(number * 10 - 10, number * 10);
 
+
   const getUsers = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
       const response = await fetch(ADMIN_FETCH_API);
-      if (!response.ok) {
+      if (!response?.ok) {
         throw new Error("Something went wrong");
       }
       const json = await response.json();

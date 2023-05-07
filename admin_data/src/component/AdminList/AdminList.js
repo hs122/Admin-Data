@@ -19,9 +19,11 @@ const AdminList = ({ task, onDelete, onChange, onCheck, onCheckAll }) => {
       <td>
         <input
           type="checkbox"
+
           checked={isActive}
           onChange={(e) => {
             setIsActive(e.target.checked);
+
           }}
         />
       </td>

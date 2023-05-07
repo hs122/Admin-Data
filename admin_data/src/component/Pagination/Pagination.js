@@ -6,6 +6,7 @@ import { DoubleRightArrow } from "../../assest/svg/DoubleRightArrow";
 import { LeftArrow } from "../../assest/svg/LeftArrow";
 import { DoubleLeftArrow } from "../../assest/svg/DoubleLeftArrow";
 
+
 const Pagination = (props) => {
   const { users } = useFetch();
   const [currentPages, setCurrentPages] = useState(1);
@@ -35,9 +36,9 @@ const Pagination = (props) => {
     props.pageNumber(currentPages);
   }, [props, currentPages]);
   return (
-    <div className="pagination">
-      <button className="btn-All text">Delete All</button>
-      <div className="pagination-container">
+    <div>
+
+      <div className="pagination-container"  data-testid="pagination-container">
         <ul>
           <li>
             <span onClick={() => handlerPage(1)}>

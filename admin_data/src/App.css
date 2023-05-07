@@ -94,44 +94,21 @@ input[type="checkbox"]:focus {
 }
 
 
-@media (max-width: 750px) {
-    th{
-        display:none;
-    }
-    td{
-        display:block;
-        padding:0.5rem 1rem;
+@media (max-width: 800px) {
+  th:first-of-type {
+    width:100px;
+  }
+  .pagination-container{
+    margin-inline:1.5rem;
+  }
+  .btn-All{
+    width:50rem
+  }
 
 
-    }
-    td::before{
-        content:attr(data-cell) " : ";
-        font-weigh:700;
-        text-transform :capitalize;
-    }
-    td[data-cell="input__checkbox"]::before{
-        content:"Checkbox :"
-    }
-    td {
-        display: grid;
-        grid-template-columns: 10em auto;
-        grid-gap: 1em 0.5em;
-      }
-      td:first-child{
-        padding-top:2rem;
-      }
-      td:last-child{
-        padding-bottom: 2rem;
-      }
-      .pagination{
-        flex-direction:column;
-      }
-
-.btn-All{
-    margin-inline:2.5rem;
-}
 
 }
+
 .btn-All {
     width: 12.5rem;
     height: 50px;
@@ -179,4 +156,11 @@ ul li span{
 }
 li span {
 padding-top:0.8rem;
+}
+
+@media(max-width:700px){
+  table{
+    width: 100%
+  }
+
 }

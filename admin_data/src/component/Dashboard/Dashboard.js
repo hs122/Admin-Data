@@ -6,28 +6,27 @@ import { useFetch } from "../../hooks/useFetch";
 import Pagination from "../Pagination/Pagination";
 import useFilters from "../../hooks/useFilters";
 
-
-
+import { Button } from "../UI/Button/Button";
 
 const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [isCheck, setIsCheck] = useState(false);
-  const { users, setUsers, allUsers, error, sliceData, setNumber} = useFetch();
+  const { users, setUsers, allUsers, error, sliceData, setNumber } = useFetch();
 
-const filter = useFilters
+  const filter = useFilters;
 
   const handlerClick = (e) => {
     if (search) {
       const searchData = filter(search, allUsers);
       setUsers(searchData);
     }
-    setSearch(e.target.value);
+    setSearch(e?.target?.value);
   };
 
   function handlerEdit(task) {
     setUsers(
       users.map((e) => {
-        if (task.id === e.id) {
+        if (task?.id === e?.id) {
           return task;
         } else {
           return e;
@@ -36,7 +35,7 @@ const filter = useFilters
     );
   }
   function handlerDelete(taskId) {
-    setUsers(users.filter((e) => e.id !== taskId));
+    setUsers(users?.filter((e) => e.id !== taskId));
   }
   const pageNumber = (pages) => {
     setNumber(pages);
@@ -46,8 +45,10 @@ const filter = useFilters
   };
 
   const handleDeleteAll = (deleteAll) => {
-   setUsers(users.splice(deleteAll));
+    setUsers(users.splice(deleteAll));
+
   };
+
   if (users.length === 0) {
     <p>Loading....</p>;
   }
@@ -57,7 +58,7 @@ const filter = useFilters
   return (
     <>
       <section>
-      <Search search={search} handlerClick={handlerClick} />
+        <Search search={search} handlerClick={handlerClick} />
         <table>
           <thead>
             <tr>
@@ -81,7 +82,13 @@ const filter = useFilters
         </table>
       </section>
       <section>
-        <div>
+        <div className="pagination">
+          <Button
+            handleDeleteAll={handleDeleteAll}
+            OnIsCheck={isCheck}
+            OnSetIsCheck={setIsCheck}
+
+          />
           <Pagination
             pageNumber={pageNumber}
             search={search}
