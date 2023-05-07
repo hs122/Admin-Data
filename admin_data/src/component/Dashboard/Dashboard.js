@@ -15,27 +15,19 @@ const Dashboard = () => {
 
   const filter = useFilters;
 
-  const handlerClick = (e) => {
-    if (search) {
-      const searchData = filter(search, allUsers);
+  const handleClick = (e) => {
+    if (e?.target?.value) {
+      const searchData = filter(e.target.value, allUsers);
       setUsers(searchData);
     }
-    setSearch(e?.target?.value);
+    setSearch(e.target.value);
   };
 
-  function handlerEdit(task) {
-    setUsers(
-      users.map((e) => {
-        if (task?.id === e?.id) {
-          return task;
-        } else {
-          return e;
-        }
-      })
-    );
+  function handleEdit(task) {
+    setUsers(users.map((e) => (task?.id === e?.id ? task : e)));
   }
   function handlerDelete(taskId) {
-    setUsers(users?.filter((e) => e.id !== taskId));
+    setUsers(users.filter((e) => e.id !== taskId));
   }
   const pageNumber = (pages) => {
     setNumber(pages);
@@ -44,9 +36,8 @@ const Dashboard = () => {
     setIsCheck(check);
   };
 
-  const handleDeleteAll = (deleteAll) => {
-    setUsers(users.splice(deleteAll));
-
+  const handleDeleteAll = (d) => {
+    setUsers(users?.slice(d));
   };
 
   if (users.length === 0) {
@@ -58,7 +49,7 @@ const Dashboard = () => {
   return (
     <>
       <section>
-        <Search search={search} handlerClick={handlerClick} />
+        <Search search={search} handlerClick={handleClick} />
         <table>
           <thead>
             <tr>
@@ -72,7 +63,7 @@ const Dashboard = () => {
                   key={data.id}
                   task={data}
                   onDelete={handlerDelete}
-                  onChange={handlerEdit}
+                  onChange={handleEdit}
                   onCheck={isCheck}
                   onCheckAll={handleCheckBox}
                 />
