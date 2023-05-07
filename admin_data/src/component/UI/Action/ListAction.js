@@ -32,7 +32,7 @@ export const ListAction = ({ onChange, task, isEditing, setIsEditing,isActive,se
             }} />
         </td>
         <td>
-          <input ref={refName} onChange={(e) => {
+          <input ref={refRole} onChange={(e) => {
               onChange({
                 ...task,
                 role: e.target.value,
