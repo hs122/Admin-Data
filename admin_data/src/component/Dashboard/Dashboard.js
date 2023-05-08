@@ -11,7 +11,7 @@ import { Button } from "../UI/Button/Button";
 const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [isCheck, setIsCheck] = useState(false);
-  const { users, setUsers, allUsers, error, sliceData, setNumber } = useFetch();
+  const { users, setUsers, allUsers, error, sliceData, setNumber, isLoading } = useFetch();
 
   const filter = useFilters;
 
@@ -40,7 +40,7 @@ const Dashboard = () => {
     setUsers(users?.slice(d));
   };
 
-  if (users.length === 0) {
+  if (!isLoading) {
     <p>Loading....</p>;
   }
   if (error) {

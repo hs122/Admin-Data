@@ -88,9 +88,15 @@ input[type="checkbox"] {
     opacity: 1;
   }
 
-  input[type="checkbox"]:hover,
+input[type="checkbox"]:hover,
 input[type="checkbox"]:focus {
   color: #c8d0d9;
+}
+.delete-btn,.edit_btn{
+  cursor:pointer;
+}
+.background_btn,.background_btn:nth-of-type(2n){
+  background:#3d3635;
 }
 
 
@@ -104,8 +110,6 @@ input[type="checkbox"]:focus {
   .btn-All{
     width:50rem
   }
-
-
 
 }
 
@@ -132,6 +136,7 @@ input[type="checkbox"]:focus {
   }
 .pagination-container{
   margin-inline:3rem;
+  cursor:pointer;
 }
 ul{
   display:flex;
