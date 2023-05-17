@@ -5,6 +5,7 @@ function App() {
 
    <main>
    <div className="wrapper">
+
    <Dashboard/>
    </div>
    </main>
