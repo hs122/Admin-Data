@@ -1,4 +1,4 @@
-import { useRef } from "react";
+
 import { Edit } from "../../../assest/svg/Edit";
 import { ListItems } from "../../AdminList/ListItems";
 import { Delete } from "../../../assest/svg/Delete";
@@ -8,13 +8,10 @@ export const ListAction = ({
   task,
   isEditing,
   setIsEditing,
-  isActive,
   setIsActive,
   onDelete,
 }) => {
-  const refName = useRef();
-  const refEmail = useRef();
-  const refRole = useRef();
+
 
   let taskContent;
   if (isEditing) {
@@ -22,33 +19,39 @@ export const ListAction = ({
       <>
         <td>
           <input
-            ref={refName}
-
+            value={task.name}
             onChange={(e) => {
               onChange({
                 ...task,
                 name: e.target.value,
+                email: task.email,
+                role: task.role,
               });
             }}
           />
         </td>
         <td>
           <input
-            ref={refEmail}
+            value={task.email}
             onChange={(e) => {
               onChange({
                 ...task,
+                name:task.name,
                 email: e.target.value,
+                role:task.role
               });
             }}
           />
         </td>
         <td>
           <input
-            ref={refRole}
+
+            value={task.role}
             onChange={(e) => {
               onChange({
                 ...task,
+                name:task.name,
+                email:task.email,
                 role: e.target.value,
               });
             }}
@@ -56,6 +59,7 @@ export const ListAction = ({
         </td>
         <td>
           <button
+          data-testid="save-button"
             onClick={() => {
               setIsEditing(false);
             }}
@@ -69,16 +73,16 @@ export const ListAction = ({
     taskContent = (
       <>
         <ListItems task={task} />
-        <td>
-          <button onClick={() => setIsEditing(true)} data-testid="edit-button">
+        <td data-cell="Action">
+          <button onClick={() => setIsEditing(true)} data-testid="edit-button " className="edit_btn">
             <Edit />
           </button>
           <button
-            disabled={!isActive}
+              className="delete-btn"
             data-testid="delete-button"
             onClick={() => {
               onDelete(task.id);
-              setIsActive(false);
+
             }}
           >
             <Delete />

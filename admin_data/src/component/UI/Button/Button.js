@@ -8,12 +8,13 @@ export const Button = ({OnIsCheck, handleDeleteAll, OnSetIsCheck}) => {
         <button
           className="btn-All"
           disabled={!OnIsCheck}
+          data-testid="delete"
           onClick={() => {
             handleDeleteAll(sliceData?.length);
             OnSetIsCheck(false);
           }}
         >
-          <span className="text">Delete All</span>
+          DELETE ALL
         </button>
 
     );

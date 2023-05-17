@@ -1,71 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect} from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { PaginationLists } from "./PaginationLists";
 import { RightArrow } from "../../assest/svg/RightArrow";
-import { DoubleRightArrow } from "../../assest/svg/DoubleRightArrow";
 import { LeftArrow } from "../../assest/svg/LeftArrow";
+import { DoubleRightArrow } from "../../assest/svg/DoubleRightArrow";
 import { DoubleLeftArrow } from "../../assest/svg/DoubleLeftArrow";
 
+const Pagination = ({ search, pageNumber }) => {
+  const { users,number,setNumber,totalPerPage } = useFetch();
 
-const Pagination = (props) => {
-  const { users } = useFetch();
-  const [currentPages, setCurrentPages] = useState(1);
-  const totalPerPage = 10;
-
-  const handlerPage = (selectedPage) => {
-
-    if (selectedPage >= 1 && selectedPage !== currentPages) {
-      setCurrentPages(selectedPage);
-    } else {
-      setCurrentPages(currentPages - 1);
+  const handlePage = (selectedPage) => {
+    if (
+      selectedPage >= 1 &&
+      selectedPage !== number &&
+      selectedPage <= pageCount
+    ) {
+      setNumber(selectedPage);
     }
   };
+
   const pageCount = Math.ceil(
-    users?.filter((user) => {
-      if (props.search === "") {
-        return users;
-      } else if (
-        user?.name?.toLowerCase().includes(props.search.toLowerCase())
-      ) {
-        return user;
-      }
-      return false;
-    }).length / totalPerPage
+    users.filter((user) =>
+      user.name.toLowerCase().includes(search.toLowerCase())
+    ).length / totalPerPage
   );
+
   useEffect(() => {
-    props.pageNumber(currentPages);
-  }, [props, currentPages]);
+    pageNumber(number);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [number]);
+
+  const paginationButtons = (
+   <>
+        <button onClick={() => handlePage(1)} className="page-btn start-page">
+          Start
+        </button>
+
+        <button onClick={() => handlePage(number - 1)} className="page-btn prev-page" >
+         Prev
+        </button>
+
+      <PaginationLists handlePage={handlePage} pageCount={pageCount} />
+
+
+        <button onClick={() => handlePage(number+ 1)} className="page-btn next-page">
+       Next
+        </button>
+
+
+        <button onClick={() => handlePage(pageCount)} className="page-btn end-page">
+         End
+        </button>
+
+
+        </>
+  );
+
   return (
-    <div>
-
-      <div className="pagination-container"  data-testid="pagination-container">
-        <ul>
-          <li>
-            <span onClick={() => handlerPage(1)}>
-              <DoubleLeftArrow />
-            </span>
-          </li>
-          <li>
-            <span onClick={() => handlerPage(currentPages - 1)}>
-              <LeftArrow />
-            </span>
-          </li>
-
-          {users.length > 0 && (
-            <PaginationLists handlerPage={handlerPage} pageCount={pageCount} />
-          )}
-          <li>
-            <span onClick={() => handlerPage(currentPages + 1)}>
-              <RightArrow />
-            </span>
-          </li>
-          <li>
-            <span onClick={() => handlerPage(pageCount)}>
-              <DoubleRightArrow />
-            </span>
-          </li>
-        </ul>
-      </div>
+    <div className="pagination-buttons" data-testid="pagination-container">
+      {users.length > 0 && paginationButtons}
     </div>
   );
 };

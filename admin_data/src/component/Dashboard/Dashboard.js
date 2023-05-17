@@ -1,27 +1,19 @@
-import React, { useState } from "react";
-import { Search } from "../UI/Search/Search";
+import React, { useState} from "react";
+
 import { TableHeading } from "../TableHeading/TableHeading";
 import AdminList from "../AdminList/AdminList";
 import { useFetch } from "../../hooks/useFetch";
 import Pagination from "../Pagination/Pagination";
-import useFilters from "../../hooks/useFilters";
 
+import ErrorHandling from "../ErrorHandling.js/ErrorHandling";
 import { Button } from "../UI/Button/Button";
 
 const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [isCheck, setIsCheck] = useState(false);
-  const { users, setUsers, allUsers, error, sliceData, setNumber, isLoading } = useFetch();
 
-  const filter = useFilters;
+  const { users, setUsers, error, isLoading, sliceData, setNumber } =useFetch(search);
 
-  const handleClick = (e) => {
-    if (e?.target?.value) {
-      const searchData = filter(e.target.value, allUsers);
-      setUsers(searchData);
-    }
-    setSearch(e.target.value);
-  };
 
   function handleEdit(task) {
     setUsers(users.map((e) => (task?.id === e?.id ? task : e)));
@@ -40,16 +32,28 @@ const Dashboard = () => {
     setUsers(users?.slice(d));
   };
 
-  if (!isLoading) {
-    <p>Loading....</p>;
-  }
   if (error) {
-    <p>Error...</p>;
+ return <ErrorHandling error={error}/>
   }
+if(isLoading){
+  return <div>No data found</div>
+}
+if (!users.length) {
+  return <div>No users found</div>;
+}
   return (
     <>
       <section>
-        <Search search={search} handlerClick={handleClick} />
+      <label>
+        <input
+          type="text"
+          placeholder="Search by name,email or role"
+          value={search}
+          onChange={(e) => {setSearch(e.target.value)
+          setNumber(1)}}
+
+          />
+      </label>
         <table>
           <thead>
             <tr>
@@ -89,6 +93,7 @@ const Dashboard = () => {
       </section>
     </>
   );
+
 };
 
 export default Dashboard;

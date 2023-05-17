@@ -1,18 +1,18 @@
-export const PaginationLists = ({ pageCount, handlerPage }) => {
+export const PaginationLists = ({ pageCount, handlePage }) => {
     return (
 
-      <>
+   <>
         {[...Array(pageCount)].map((_, i) => {
           return (
-            <li key={i}>
-            <span onClick={() => handlerPage(i + 1)}
-            >
+
+            <button onClick={() => handlePage(i + 1)}
+            className="page page-btn">
               {i + 1}
-            </span>
-            </li>
+            </button>
+
           );
         })}
-      </>
 
+   </>
     );
   };
