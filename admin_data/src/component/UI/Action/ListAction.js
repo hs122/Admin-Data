@@ -8,50 +8,44 @@ export const ListAction = ({
   task,
   isEditing,
   setIsEditing,
-  setIsActive,
   onDelete,
 }) => {
-
-
   let taskContent;
+
   if (isEditing) {
     taskContent = (
       <>
         <td>
           <input
+            data-testid="name-input"
             value={task.name}
             onChange={(e) => {
               onChange({
                 ...task,
                 name: e.target.value,
-                email: task.email,
-                role: task.role,
               });
             }}
           />
         </td>
         <td>
           <input
+            data-testid="email-input"
             value={task.email}
             onChange={(e) => {
               onChange({
                 ...task,
-                name:task.name,
                 email: e.target.value,
-                role:task.role
               });
             }}
           />
         </td>
         <td>
           <input
-
+            data-testid="role-input"
             value={task.role}
             onChange={(e) => {
               onChange({
                 ...task,
-                name:task.name,
-                email:task.email,
                 role: e.target.value,
               });
             }}
@@ -59,7 +53,7 @@ export const ListAction = ({
         </td>
         <td>
           <button
-          data-testid="save-button"
+            data-testid="save-button"
             onClick={() => {
               setIsEditing(false);
             }}
@@ -74,15 +68,14 @@ export const ListAction = ({
       <>
         <ListItems task={task} />
         <td data-cell="Action">
-          <button onClick={() => setIsEditing(true)} data-testid="edit-button " className="edit_btn">
+          <button onClick={() => setIsEditing(true)} data-testid="edit-button" className="edit_btn">
             <Edit />
           </button>
           <button
-              className="delete-btn"
+            className="delete-btn"
             data-testid="delete-button"
             onClick={() => {
               onDelete(task.id);
-
             }}
           >
             <Delete />

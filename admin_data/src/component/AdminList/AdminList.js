@@ -15,7 +15,7 @@ const AdminList = ({ task, onDelete, onChange, onCheck, onCheckAll }) => {
   }, [onCheck, onCheckAll]);
 
   return (
-    <tr  className={isActive && 'background_btn'}>
+    <tr  className={isActive ? 'background_btn':""}>
       <td>
         <input
           type="checkbox"

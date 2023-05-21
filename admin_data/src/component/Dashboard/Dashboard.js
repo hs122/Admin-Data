@@ -39,7 +39,7 @@ if(isLoading){
   return <div>No data found</div>
 }
 if (!users.length) {
-  return <div>No users found</div>;
+  return <div data-cell="no-users">No users found</div>;
 }
   return (
     <>

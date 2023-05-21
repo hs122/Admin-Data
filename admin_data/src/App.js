@@ -4,7 +4,7 @@ function App() {
   return (
 
    <main>
-   <div className="wrapper">
+   <div className="wrapper" data-testid="dashboard">
 
    <Dashboard/>
    </div>

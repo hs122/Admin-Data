@@ -1,10 +1,7 @@
 import React, {useEffect} from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { PaginationLists } from "./PaginationLists";
-import { RightArrow } from "../../assest/svg/RightArrow";
-import { LeftArrow } from "../../assest/svg/LeftArrow";
-import { DoubleRightArrow } from "../../assest/svg/DoubleRightArrow";
-import { DoubleLeftArrow } from "../../assest/svg/DoubleLeftArrow";
+
 
 const Pagination = ({ search, pageNumber }) => {
   const { users,number,setNumber,totalPerPage } = useFetch();
@@ -57,7 +54,7 @@ const Pagination = ({ search, pageNumber }) => {
   );
 
   return (
-    <div className="pagination-buttons" data-testid="pagination-container">
+    <div className="pagination-buttons" >
       {users.length > 0 && paginationButtons}
     </div>
   );

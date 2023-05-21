@@ -10,7 +10,6 @@ body {
   background-position: center center;
   background-repeat:  no-repeat;
   background-attachment: fixed;
-  background-size:  cover;
   background-color: #999;
 }
 .wrapper {
@@ -28,7 +27,7 @@ table {
   border-spacing: 0px !important;
   font-variant: normal;
   background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: hue-rotate(52deg);
+  backdrop-filter: blur(5px);
 }
 
 label input {
@@ -239,17 +238,17 @@ input[type="checkbox"]:before {
 }
 @media (max-width: 350px) {
   table {
-    width: 25rem;
-    margin: 0 2.5rem;
+    margin: 0 5rem;
   }
   input[type="text"] {
-    margin-inline: 2.5rem;
+    margin-inline: 5rem;
   }
 }
 
 .pagination{
   display:flex;
   margin:2rem 0 ;
+
 }
 .page-btn {
   background: none;
@@ -260,7 +259,7 @@ input[type="checkbox"]:before {
   border: none;
   cursor: pointer;
   color: white;
-  background: #f1f5fc4a;
+  background: #000000cc;
   color: #fff;
   height: 35px;
   border-radius: 2px;
@@ -271,6 +270,7 @@ input[type="checkbox"]:before {
   margin: 0 1.5rem;
   font-size: 0.9rem;
   font-weight: 700;
+
 }
 .page-btn:first-of-type {
   margin-left: 0;
